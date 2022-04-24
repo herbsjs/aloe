@@ -3,7 +3,13 @@ const assert = require('assert')
 const { state } = require('../src/runningState.js')
 
 describe('A when function', () => {
-  describe('passing', () => {
+  context('before run', () => {
+    it('should validate its structure')
+
+    it('should document its structure')
+  })
+
+  context('passing', () => {
     const givenAPassingWhenFunction = () => {
       return when(() => true)
     }
@@ -20,7 +26,7 @@ describe('A when function', () => {
     it('should audit after run')
   })
 
-  describe('failing', () => {
+  context('failing', () => {
     const givenAFailingWhenFunction = () => {
       return when(() => {
         throw new Error('A error from a when function')
@@ -38,8 +44,4 @@ describe('A when function', () => {
 
     it('should audit after run')
   })
-
-  it('should validates its structure')
-
-  it('should document its structure')
 })

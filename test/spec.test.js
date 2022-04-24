@@ -4,7 +4,7 @@ const { usecase } = require('@herbsjs/herbs')
 const assert = require('assert')
 
 describe('A spec', () => {
-  describe('the simplest use case spec', () => {
+  context('the simplest use case spec', () => {
     const givenTheSimplestUCSpec = () => {
       const AUseCase = usecase('A generic use case', {})
 

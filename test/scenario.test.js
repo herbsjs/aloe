@@ -6,7 +6,7 @@ const { check } = require('../src/check')
 const { state } = require('../src/runningState')
 
 describe('A scenario', () => {
-  describe('simplest scenario', () => {
+  context('simplest scenario', () => {
     context('before run', () => {
       it('should validate its structure')
 

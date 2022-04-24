@@ -3,7 +3,13 @@ const assert = require('assert')
 const { state } = require('../src/runningState.js')
 
 describe('A check function', () => {
-  describe('passing', () => {
+  context('before run', () => {
+    it('should validate its structure')
+
+    it('should document its structure')
+  })
+
+  context('passing', () => {
     const givenAPassingCheckFunction = () => {
       return check(() => true)
     }
@@ -20,7 +26,7 @@ describe('A check function', () => {
     it('should audit after run')
   })
 
-  describe('failing', () => {
+  context('failing', () => {
     const givenAFailingCheckFunction = () => {
       return check(() => {
         throw new Error('A error from a check function')
@@ -39,7 +45,4 @@ describe('A check function', () => {
     it('should audit after run')
   })
 
-  it('should validates its structure')
-
-  it('should document its structure')
 })
