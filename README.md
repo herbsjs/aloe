@@ -21,6 +21,7 @@ const { xyz } = require('@herbsjs/aloe')
 - [ ] skip
 - [ ] only
 - [ ] todo / pending
+- [ ] nested scenarios
 - [ ] process exit code = 1 when error
 - [ ] TAP protocol https://testanything.org/
 

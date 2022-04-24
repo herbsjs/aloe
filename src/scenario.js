@@ -1,4 +1,6 @@
+const { Err } = require('@herbsjs/herbs')
 const { state } = require('./runningState')
+const { when } = require('./when')
 
 class Scenario {
   constructor(body) {
@@ -17,10 +19,11 @@ class Scenario {
       if (given.state === state.failed) throw new Error({ given })
     }
 
-    // given - context
+    // context
     this.context = this.givens
       .map((given) => given.context)
       .reduce((prev, current) => Object.assign(prev, current))
+    if (this.usecase) this.context.usecase = this.usecase
 
     // when
     for (const when of this.whens) {
@@ -40,15 +43,38 @@ class Scenario {
   }
 
   build() {
-    function description(entries) {
+    const description = (entries) => {
       const [description, instance] = entries
       instance.description = description
       return instance
     }
+    const defaultWhen = () => {
+      if (!this.usecase) return
+      if (this.whens.length > 0) return
+      const defaultWhen = when(async (ctx) => {
+        const injection = ctx.injection
+        const uc = ctx.usecase(injection)
+
+        const hasAccess = await uc.authorize(ctx.user)
+
+        if (hasAccess === false) {
+          ctx.response = Err.permissionDenied()
+          return
+        }
+
+        const request = ctx.request
+        ctx.response = await uc.run(request)
+      })
+
+      defaultWhen.default = true
+      this.whens.push(defaultWhen)
+    }
+
     this.info = this._body.info
     const entries = Object.entries(this._body)
     this.givens = entries.filter(([k, v]) => v.isGiven).map(description)
     this.whens = entries.filter(([k, v]) => v.isWhen).map(description)
+    defaultWhen()
     this.checks = entries.filter(([k, v]) => v.isCheck).map(description)
   }
 

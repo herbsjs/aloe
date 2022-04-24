@@ -2,14 +2,14 @@ const { given } = require('../src/given.js')
 const assert = require('assert')
 
 describe('A given value', () => {
-  context('for use case', () => {
+  context('generic', () => {
+    context('before run', () => {
+      it('should validate its structure')
+
+      it('should document its structure')
+    })
+
     context('structured', () => {
-      context('before run', () => {
-        it('should validate its structure')
-
-        it('should document its structure')
-      })
-
       context('with no errors', () => {
         const givenAStructuredGivenForUseCases = () => {
           return given({
@@ -42,12 +42,6 @@ describe('A given value', () => {
     })
 
     context('unstructured', () => {
-      context('before run', () => {
-        it('should validate its structure')
-
-        it('should document its structure')
-      })
-
       context('with no errors', () => {
         const givenAnUnstructuredGiven = () => {
           return given(() => ({
@@ -77,6 +71,8 @@ describe('A given value', () => {
 
         it('should audit after run')
       })
+
+      it('with errors')
     })
   })
 })
