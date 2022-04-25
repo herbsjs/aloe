@@ -4,6 +4,7 @@ class When {
     constructor(func) {
       this.type = 'when'
       this.func = func
+      this.builtin = false
       this._auditTrail = { type: this.type }
     }
 
@@ -17,6 +18,15 @@ class When {
       }
       this.state = run
       return run
+    }
+
+    doc() {
+      if (this.builtin) return
+      const doc = {
+        type: this.type,
+        description: this.description
+      }
+      return doc
     }
 
     get isWhen() {

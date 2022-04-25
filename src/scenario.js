@@ -48,10 +48,10 @@ class Scenario {
       instance.description = description
       return instance
     }
-    const defaultWhen = () => {
+    const builtinWhen = () => {
       if (!this.usecase) return
       if (this.whens.length > 0) return
-      const defaultWhen = when(async (ctx) => {
+      const builtinWhen = when(async (ctx) => {
         const injection = ctx.injection
         const uc = ctx.usecase(injection)
 
@@ -66,16 +66,29 @@ class Scenario {
         ctx.response = await uc.run(request)
       })
 
-      defaultWhen.default = true
-      this.whens.push(defaultWhen)
+      builtinWhen.builtin = true
+      this.whens.push(builtinWhen)
     }
 
     this.info = this._body.info
     const entries = Object.entries(this._body)
     this.givens = entries.filter(([k, v]) => v.isGiven).map(description)
     this.whens = entries.filter(([k, v]) => v.isWhen).map(description)
-    defaultWhen()
+    builtinWhen()
     this.checks = entries.filter(([k, v]) => v.isCheck).map(description)
+  }
+
+  doc() {
+    this.build()
+    const doc = {
+      type: this.type,
+      description: this.description,
+      info: this.info,
+      givens: this.givens.map((given) => given.doc()),
+      whens: this.whens.map((when) => when.doc()).filter(Boolean),
+      checks: this.checks.map((check) => check.doc())
+    }
+    return doc
   }
 
   get isScenario() {

@@ -4,9 +4,27 @@ const { state } = require('../src/runningState.js')
 
 describe('A check function', () => {
   context('before run', () => {
+    const givenAPassingCheckFunction = () => {
+      const instance = check(() => true)
+      instance.description = 'A "Check" description'
+      return instance
+    }
+
     it('should validate its structure')
 
-    it('should document its structure')
+    it('should document its structure', async () => {
+      //given
+      const instance = givenAPassingCheckFunction()
+
+      //when
+      const ret = await instance.doc()
+
+      //then
+      assert.deepStrictEqual(
+        ret,
+        { type: 'check', description: 'A "Check" description' },
+      )
+    })
   })
 
   context('passing', () => {

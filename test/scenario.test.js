@@ -7,9 +7,58 @@ const { state } = require('../src/runningState')
 
 describe('A scenario', () => {
   context('before run', () => {
+    const givenTheSimplestScenario = () => {
+      const instance = scenario({
+        info: 'A simple scenario',
+        'Given a input': given(() => ({
+          user: 'a',
+        })),
+        'Given another input': given(() => ({
+          customer: 'x',
+          project: 'w',
+        })),
+        'When running': when((ctx) => {
+          ctx.user = 'b'
+        }),
+        'Check output': check((ctx) => {
+          assert.ok(ctx.user === 'b')
+        }),
+        'Check another output': check((ctx) => {
+          assert.ok(ctx.customer === 'x')
+        }),
+      })
+      instance.description = 'A "Scenario" description'
+      return instance
+    }
+
     it('should validate its structure')
 
-    it('should document its structure')
+    it('should document its structure', async () => {
+      //given
+      const instance = givenTheSimplestScenario()
+
+      //when
+      const ret = await instance.doc()
+
+      //then
+      assert.deepStrictEqual(
+        ret,
+        {
+          type: 'scenario',
+          description: 'A "Scenario" description',
+          info: 'A simple scenario',
+          givens: [
+            { type: 'given', description: 'Given a input', value: { user: 'a' }, isFunction: true },
+            { type: 'given', description: 'Given another input', value: { customer: 'x', project: 'w' }, isFunction: true }
+          ],
+          whens: [{ type: 'when', description: 'When running' }],
+          checks: [
+            { type: 'check', description: 'Check output' },
+            { type: 'check', description: 'Check another output' }
+          ]
+        },
+      )
+    })
   })
 
   context('with no errors', () => {

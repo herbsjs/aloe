@@ -4,9 +4,27 @@ const { state } = require('../src/runningState.js')
 
 describe('A when function', () => {
   context('before run', () => {
+    const givenAPassingWhenFunction = () => {
+      const instance = when(() => true)
+      instance.description = 'A "When" description'
+      return instance
+    }
+
     it('should validate its structure')
 
-    it('should document its structure')
+    it('should document its structure', async () => {
+      //given
+      const instance = givenAPassingWhenFunction()
+
+      //when
+      const ret = await instance.doc()
+
+      //then
+      assert.deepStrictEqual(
+        ret,
+        { type: 'when', description: 'A "When" description' },
+      )
+    })
   })
 
   context('passing', () => {

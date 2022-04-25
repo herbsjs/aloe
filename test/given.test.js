@@ -4,9 +4,29 @@ const assert = require('assert')
 describe('A given value', () => {
   context('generic', () => {
     context('before run', () => {
+      const givenAGenericGiven = () => {
+        const instance = given({
+          id: 1,
+        })
+        instance.description = 'A "Given" description'
+        return instance
+      }
+
       it('should validate its structure')
 
-      it('should document its structure')
+      it('should document its structure', async () => {
+        //given
+        const instance = givenAGenericGiven()
+
+        //when
+        const ret = await instance.doc()
+
+        //then
+        assert.deepStrictEqual(
+          ret,
+          { type: 'given', description: 'A "Given" description', value: { id: 1 }, isFunction: false },
+        )
+      })
     })
 
     context('structured', () => {

@@ -1,3 +1,4 @@
+const { exec } = require("./exec")
 const { state } = require("./runningState")
 
 class Given {
@@ -23,6 +24,16 @@ class Given {
     }
     this.state = run
     return run
+  }
+
+  doc() {
+    const doc = {
+      type: this.type,
+      description: this.description,
+      value: exec.safe(this._body),
+      isFunction: exec.isFunction(this._body)
+    }
+    return doc
   }
 
   get isGiven() {
