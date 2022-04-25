@@ -1,6 +1,5 @@
-const { Err } = require('@herbsjs/herbs')
+const { builtinWhen } = require('./builtin/when')
 const { state } = require('./runningState')
-const { when } = require('./when')
 
 class Scenario {
   constructor(body) {
@@ -48,33 +47,18 @@ class Scenario {
       instance.description = description
       return instance
     }
-    const builtinWhen = () => {
+    const addBuiltinWhen = () => {
       if (!this.usecase) return
       if (this.whens.length > 0) return
-      const builtinWhen = when(async (ctx) => {
-        const injection = ctx.injection
-        const uc = ctx.usecase(injection)
-
-        const hasAccess = await uc.authorize(ctx.user)
-
-        if (hasAccess === false) {
-          ctx.response = Err.permissionDenied()
-          return
-        }
-
-        const request = ctx.request
-        ctx.response = await uc.run(request)
-      })
-
-      builtinWhen.builtin = true
-      this.whens.push(builtinWhen)
+      const when = builtinWhen()
+      this.whens.push(when)
     }
 
     this.info = this._body.info
     const entries = Object.entries(this._body)
     this.givens = entries.filter(([k, v]) => v.isGiven).map(description)
     this.whens = entries.filter(([k, v]) => v.isWhen).map(description)
-    builtinWhen()
+    addBuiltinWhen()
     this.checks = entries.filter(([k, v]) => v.isCheck).map(description)
   }
 
