@@ -107,7 +107,14 @@ describe('A scenario', () => {
       assert.strictEqual(instance.checks[1].state, state.passed)
     })
 
-    it('should audit after run')
+    it('should audit after run', async () => {
+      //given
+      const instance = givenTheSimplestScenario()
+      //when
+      const ret = await instance.run()
+      //then
+      assert.strictEqual(instance.auditTrail.state, state.passed)
+    })
 
     it('should not be allow to run more than once')
   })

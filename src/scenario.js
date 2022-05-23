@@ -12,33 +12,30 @@ class Scenario {
   async run() {
     this.build()
 
-    // given
-    for (const given of this.givens) {
-      await given.run()
-      if (given.state === state.failed) throw new Error({ given })
+    const exec = async (list, context) => {
+      for (const item of list) {
+        await item.run(context)
+      }
+      this.state = list.find((check) => check.state === state.failed) ? state.failed : state.passed
+      this._auditTrail.state = this.state
+      return this.state
     }
+
+    let ret
+    ret = await exec(this.givens)
+    if (ret === state.failed) return ret
 
     // context
     this.context = this.givens
       .map((given) => given.context)
       .reduce((prev, current) => Object.assign(prev, current))
     if (this.usecase) this.context.usecase = this.usecase
+    
+    ret = await exec(this.whens, this.context)
+    if (ret === state.failed) return ret
 
-    // when
-    for (const when of this.whens) {
-      await when.run(this.context)
-      if (when.state === state.failed) throw new Error({ when })
-    }
-
-    // checks
-    for (const check of this.checks) {
-      await check.run(this.context)
-    }
-    this.state = this.checks.find((check) => check.state === state.failed)
-      ? state.failed
-      : state.passed
-
-    return this.state
+    ret = await exec(this.checks, this.context)
+    return ret
   }
 
   build() {
@@ -73,6 +70,10 @@ class Scenario {
       checks: this.checks.map((check) => check.doc())
     }
     return doc
+  }
+
+  get auditTrail() {
+    return this._auditTrail
   }
 
   get isScenario() {

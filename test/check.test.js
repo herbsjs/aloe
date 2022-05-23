@@ -41,7 +41,15 @@ describe('A check function', () => {
       assert.ok(ret === state.passed)
     })
 
-    it('should audit after run')
+    it('should audit after run', async () => {
+      //given
+      const instance = givenAPassingCheckFunction()
+      //when
+      const ret = await instance.run()
+      //then
+      assert.strictEqual(instance.auditTrail.state, state.passed)
+    })
+
   })
 
   context('failing', () => {
@@ -60,7 +68,15 @@ describe('A check function', () => {
       assert.ok(ret === state.failed)
     })
 
-    it('should audit after run')
+    it('should audit after run', async () => {
+      //given
+      const instance = givenAFailingCheckFunction()
+      //when
+      const ret = await instance.run()
+      //then
+      assert.strictEqual(instance.auditTrail.state, state.failed)
+      assert.strictEqual(instance.auditTrail.error.message, 'A error from a check function')
+    })
   })
 
 })

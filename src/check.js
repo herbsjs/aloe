@@ -16,8 +16,10 @@ class Check {
       run = state.passed
     } catch (error) {
       run = state.failed
+      this._auditTrail.error = error
     }
     this.state = run
+    this._auditTrail.state = run
     return run
   }
 
@@ -29,9 +31,14 @@ class Check {
     return doc
   }
 
+  get auditTrail() {
+    return this._auditTrail
+  }
+
   get isCheck() {
     return true
   }
+  
 }
 
 const check = (body) => {

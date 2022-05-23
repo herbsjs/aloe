@@ -41,7 +41,14 @@ describe('A when function', () => {
       assert.ok(ret === state.done)
     })
 
-    it('should audit after run')
+    it('should audit after run', async () => {
+      //given
+      const instance = givenAPassingWhenFunction()
+      //when
+      const ret = await instance.run()
+      //then
+      assert.strictEqual(instance.auditTrail.state, state.done)
+    })
   })
 
   context('failing', () => {
@@ -60,6 +67,14 @@ describe('A when function', () => {
       assert.ok(ret === state.failed)
     })
 
-    it('should audit after run')
+    it('should audit after run', async () => {
+      //given
+      const instance = givenAFailingWhenFunction()
+      //when
+      const ret = await instance.run()
+      //then
+      assert.strictEqual(instance.auditTrail.state, state.failed)
+      assert.strictEqual(instance.auditTrail.error.message, 'A error from a when function')
+    })
   })
 })
