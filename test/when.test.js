@@ -47,7 +47,7 @@ describe('A when function', () => {
       //when
       const ret = await instance.run()
       //then
-      assert.strictEqual(instance.auditTrail.state, state.done)
+      assert.deepStrictEqual(instance.auditTrail, { type: 'when', state: 'done', description: undefined })
     })
   })
 
@@ -73,8 +73,12 @@ describe('A when function', () => {
       //when
       const ret = await instance.run()
       //then
-      assert.strictEqual(instance.auditTrail.state, state.failed)
-      assert.strictEqual(instance.auditTrail.error.message, 'A error from a when function')
+      assert.deepStrictEqual(instance.auditTrail, {
+        type: 'when',
+        state: 'failed',
+        description: undefined,
+        error: Error('A error from a when function')
+      })
     })
   })
 })

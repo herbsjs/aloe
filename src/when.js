@@ -33,7 +33,9 @@ class When {
   }
 
   get auditTrail() {
-    return this._auditTrail
+    const audit = {... this._auditTrail}
+    audit.description = this.description
+    return audit
   }
 
   get isWhen() {

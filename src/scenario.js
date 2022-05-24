@@ -65,15 +65,20 @@ class Scenario {
       type: this.type,
       description: this.description,
       info: this.info,
-      givens: this.givens.map((given) => given.doc()),
-      whens: this.whens.map((when) => when.doc()).filter(Boolean),
-      checks: this.checks.map((check) => check.doc())
+      givens: this.givens.map(given => given.doc()),
+      whens: this.whens.map(when => when.doc()).filter(Boolean),
+      checks: this.checks.map(check => check.doc())
     }
     return doc
   }
 
   get auditTrail() {
-    return this._auditTrail
+    const audit = {... this._auditTrail}
+    audit.description = this.description
+    audit.givens = this.givens.map(given => given.auditTrail)
+    audit.whens = this.whens.map(when => when.auditTrail)
+    audit.checks = this.checks.map(check => check.auditTrail)
+    return audit
   }
 
   get isScenario() {

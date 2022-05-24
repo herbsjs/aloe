@@ -32,13 +32,15 @@ class Check {
   }
 
   get auditTrail() {
-    return this._auditTrail
+    const audit = { ... this._auditTrail }
+    audit.description = this.description
+    return audit
   }
 
   get isCheck() {
     return true
   }
-  
+
 }
 
 const check = (body) => {

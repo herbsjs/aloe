@@ -47,7 +47,7 @@ describe('A check function', () => {
       //when
       const ret = await instance.run()
       //then
-      assert.strictEqual(instance.auditTrail.state, state.passed)
+      assert.deepStrictEqual(instance.auditTrail, { type: 'check', state: 'passed', description: undefined })
     })
 
   })
@@ -74,8 +74,12 @@ describe('A check function', () => {
       //when
       const ret = await instance.run()
       //then
-      assert.strictEqual(instance.auditTrail.state, state.failed)
-      assert.strictEqual(instance.auditTrail.error.message, 'A error from a check function')
+      assert.deepStrictEqual(instance.auditTrail, {
+        type: 'check',
+        state: 'failed',
+        description: undefined,
+        error: Error('A error from a check function')
+      })
     })
   })
 

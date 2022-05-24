@@ -18,11 +18,14 @@ class Given {
     try {
       const ret = this.func ? await this.func() : this._body
       this.context = Object.assign({}, ret)
+      // this._auditTrail.context = {... this.context}
       run = state.done
     } catch (error) {
       run = state.failed
+      this._auditTrail.error = error
     }
     this.state = run
+    this._auditTrail.state = run
     return run
   }
 
@@ -34,6 +37,12 @@ class Given {
       isFunction: exec.isFunction(this._body)
     }
     return doc
+  }
+
+  get auditTrail() {
+    const audit = { ... this._auditTrail }
+    audit.description = this.description
+    return audit
   }
 
   get isGiven() {

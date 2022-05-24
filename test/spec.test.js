@@ -58,7 +58,7 @@ describe('A spec', () => {
       })
     })
 
-    context('with no errors', () => {
+    context('passing', () => {
       const givenTheSimplestGenericSpec = () => {
         const ASpec = spec({
           'A simple scenario': scenario({
@@ -96,7 +96,7 @@ describe('A spec', () => {
       it('should audit after run')
     })
 
-    context('with errors', () => {
+    context('failing', () => {
       const givenTheSimplestGenericSpec = () => {
         const ASpec = spec({
           'A simple scenario': scenario({
@@ -182,7 +182,7 @@ describe('A spec', () => {
       })
     })
 
-    context('with no errors', () => {
+    context('passing', () => {
       const givenTheSimplestUCSpec = () => {
         const AUseCase = (injection) =>
           usecase('A generic use case', {
@@ -239,7 +239,7 @@ describe('A spec', () => {
       it('should audit after run')
     })
 
-    context('with errors', () => {
+    context('failing', () => {
       const givenTheSimplestUCSpec = () => {
         const AUseCase = (injection) =>
           usecase('A generic use case', {
