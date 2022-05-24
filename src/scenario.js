@@ -1,28 +1,37 @@
 const { builtinWhen } = require('./builtin/when')
 const { state } = require('./runningState')
 
+const stages = {
+  none: 'none',
+  given: 'given',
+  when: 'when',
+  check: 'check'
+}
+
 class Scenario {
   constructor(body) {
     this.type = 'scenario'
     this.state = state.ready
-    this._auditTrail = { type: this.type, state: this.state }
+    this.stage = stages.none
+    this._auditTrail = { type: this.type, state: this.state, stage: this.stage }
     this._body = body
   }
 
   async run() {
     this.build()
 
-    const exec = async (list, context) => {
+    const exec = async (list, stages, context) => {
       for (const item of list) {
         await item.run(context)
       }
       this.state = list.find((check) => check.state === state.failed) ? state.failed : state.passed
       this._auditTrail.state = this.state
+      this.stage = stages
       return this.state
     }
 
     let ret
-    ret = await exec(this.givens)
+    ret = await exec(this.givens, stages.given)
     if (ret === state.failed) return ret
 
     // context
@@ -31,10 +40,10 @@ class Scenario {
       .reduce((prev, current) => Object.assign(prev, current))
     if (this.usecase) this.context.usecase = this.usecase
     
-    ret = await exec(this.whens, this.context)
+    ret = await exec(this.whens, stages.when, this.context)
     if (ret === state.failed) return ret
 
-    ret = await exec(this.checks, this.context)
+    ret = await exec(this.checks, stages.check, this.context)
     return ret
   }
 
@@ -75,6 +84,7 @@ class Scenario {
   get auditTrail() {
     const audit = {... this._auditTrail}
     audit.description = this.description
+    audit.stage = this.stage
     audit.givens = this.givens.map(given => given.auditTrail)
     audit.whens = this.whens.map(when => when.auditTrail)
     audit.checks = this.checks.map(check => check.auditTrail)

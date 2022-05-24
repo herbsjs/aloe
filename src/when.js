@@ -16,7 +16,7 @@ class When {
       run = state.done
     } catch (error) {
       run = state.failed
-      this._auditTrail.error = error
+      this.error = error
     }
     this.state = run
     this._auditTrail.state = run
@@ -34,6 +34,7 @@ class When {
 
   get auditTrail() {
     const audit = {... this._auditTrail}
+    if (this.error) audit.error = this.error
     audit.description = this.description
     return audit
   }

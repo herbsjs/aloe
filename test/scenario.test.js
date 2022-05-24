@@ -115,7 +115,7 @@ describe('A scenario', () => {
       const ret = await instance.run()
       //then
       assert.deepStrictEqual(instance.auditTrail, {
-        type: "scenario", state: "passed", description: undefined,
+        type: "scenario", state: "passed", description: undefined, stage: "check",
         givens: [
           { type: "given", state: "done", description: "Given a input" },
           { type: "given", state: "done", description: "Given another input" }],
@@ -213,6 +213,7 @@ describe('A scenario', () => {
         //then
         // - firts, it should not throw a exception, then:
         assert.strictEqual(ret, state.failed)
+        assert.strictEqual(instance.stage, 'given')
         assert.strictEqual(instance.givens[0].state, state.failed)
       })
 
@@ -247,6 +248,7 @@ describe('A scenario', () => {
         //then
         // - firts, it should not throw a exception, then:
         assert.strictEqual(ret, state.failed)
+        assert.strictEqual(instance.stage, 'when')
         assert.strictEqual(instance.givens[0].state, state.done)
         assert.strictEqual(instance.whens[0].state, state.failed)
       })
@@ -283,6 +285,7 @@ describe('A scenario', () => {
         //then
         // - firts, it should not throw a exception, then:
         assert.strictEqual(ret, state.failed)
+        assert.strictEqual(instance.stage, 'check')
         assert.strictEqual(instance.givens[0].state, state.done)
         assert.strictEqual(instance.whens[0].state, state.done)
         assert.strictEqual(instance.checks[0].state, state.failed)
