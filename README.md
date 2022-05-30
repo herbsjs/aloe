@@ -18,12 +18,17 @@ const { xyz } = require('@herbsjs/aloe')
 
 ## TODO
 
+- [ ] doc all
 - [ ] skip
 - [ ] only
 - [ ] todo / pending
 - [ ] nested scenarios
 - [ ] process exit code = 1 when error
 - [ ] TAP protocol https://testanything.org/
+
+- [ ] add aloe to `@herbsjs/herbs`
+- [ ] CLI: doc `spec` command
+
 
 ### Contribute
 
