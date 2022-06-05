@@ -107,7 +107,7 @@ describe('A scenario', () => {
       assert.strictEqual(instance.description, 'A scenario')
       assert.strictEqual(instance.info, 'A simple scenario')
       assert.strictEqual(instance.samples[0].description, '')
-      assert.strictEqual(instance.samples[0].builtIn, true)
+      assert.strictEqual(instance.samples[0].builtin, true)
       assert.strictEqual(instance.samples[0].execution.scenarios[0].stage, 'check')
       assert.strictEqual(instance.samples[0].execution.scenarios[0].state, state.passed)
       assert.strictEqual(instance.samples[0].execution.scenarios[0].givens[0].description, 'Given a input')
@@ -133,7 +133,7 @@ describe('A scenario', () => {
       assert.deepStrictEqual(instance.auditTrail, {
         type: "scenario", state: "passed", description: "A scenario",
         samples: [{
-          builtIn: true,
+          builtin: true,
           executions: [{
             sample: {}, state: "passed", stage: "check",
             givens: [
@@ -190,7 +190,7 @@ describe('A scenario', () => {
       assert.strictEqual(instance.description, 'A failed scenario')
       assert.strictEqual(instance.info, 'A simple scenario')
       assert.strictEqual(instance.samples[0].description, '')
-      assert.strictEqual(instance.samples[0].builtIn, true)
+      assert.strictEqual(instance.samples[0].builtin, true)
       assert.strictEqual(instance.samples[0].execution.scenarios[0].stage, 'check')
       assert.strictEqual(instance.samples[0].execution.scenarios[0].state, state.failed)
       assert.strictEqual(instance.samples[0].execution.scenarios[0].givens[0].description, 'Given a input')

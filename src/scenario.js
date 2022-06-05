@@ -85,7 +85,7 @@ class SamplesExecution {
     this.scenario = scenario
     this.samples = samples
     this.scenarios = []
-    this._auditTrail = { builtIn: this.samples.builtIn }
+    this._auditTrail = { builtin: this.samples.builtin }
   }
 
   async run() {
@@ -128,7 +128,7 @@ class Scenario {
       if (this.samples.length > 0) return
       const factory = samples([{}])
       const instance = factory.create('')
-      instance.builtIn = true
+      instance.builtin = true
       this.samples.push(instance)
     }
 
