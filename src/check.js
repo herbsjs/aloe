@@ -2,11 +2,12 @@ const { exec } = require("./exec")
 const { state } = require("./runningState")
 
 class Check {
-  constructor(func) {
+  constructor(description, func) {
     this.type = 'check'
     this.func = func
     this.state = state.ready
-    this._auditTrail = { type: this.type, state: this.state }
+    this.description = description
+    this._auditTrail = { type: this.type, state: this.state, description: this.description }
   }
 
   async run(context) {
@@ -34,7 +35,6 @@ class Check {
   get auditTrail() {
     const audit = { ... this._auditTrail }
     if (this.error) audit.error = this.error
-    audit.description = this.description
     return audit
   }
 
@@ -44,8 +44,8 @@ class Check {
 
 }
 
-const check = (body) => {
-  return new Check(body)
-}
+const check = (body) => ({
+  create: (description) => { return new Check(description, body) }
+})
 
 module.exports = { check }

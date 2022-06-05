@@ -6,7 +6,6 @@ describe('A when function', () => {
   context('before run', () => {
     const givenAPassingWhenFunction = () => {
       const instance = when(() => true)
-      instance.description = 'A "When" description'
       return instance
     }
 
@@ -14,7 +13,8 @@ describe('A when function', () => {
 
     it('should document its structure', async () => {
       //given
-      const instance = givenAPassingWhenFunction()
+      const factory = givenAPassingWhenFunction()
+      const instance = factory.create('A "When" description')
 
       //when
       const ret = await instance.doc()
@@ -34,7 +34,8 @@ describe('A when function', () => {
 
     it('should run', async () => {
       //given
-      const instance = givenAPassingWhenFunction()
+      const factory = givenAPassingWhenFunction()
+      const instance = factory.create('A scenario')
       //when
       const ret = await instance.run()
       //then
@@ -43,11 +44,12 @@ describe('A when function', () => {
 
     it('should audit after run', async () => {
       //given
-      const instance = givenAPassingWhenFunction()
+      const factory = givenAPassingWhenFunction()
+      const instance = factory.create('A scenario')
       //when
       const ret = await instance.run()
       //then
-      assert.deepStrictEqual(instance.auditTrail, { type: 'when', state: 'done', description: undefined })
+      assert.deepStrictEqual(instance.auditTrail, { type: 'when', state: 'done', description: 'A scenario' })
     })
   })
 
@@ -60,7 +62,8 @@ describe('A when function', () => {
 
     it('should run', async () => {
       //given
-      const instance = givenAFailingWhenFunction()
+      const factory = givenAFailingWhenFunction()
+      const instance = factory.create('A scenario')
       //when
       const ret = await instance.run()
       //then
@@ -69,14 +72,16 @@ describe('A when function', () => {
 
     it('should audit after run', async () => {
       //given
-      const instance = givenAFailingWhenFunction()
+      const factory = givenAFailingWhenFunction()
+      const instance = factory.create('A scenario')
+
       //when
       const ret = await instance.run()
       //then
       assert.deepStrictEqual(instance.auditTrail, {
         type: 'when',
         state: 'failed',
-        description: undefined,
+        description: 'A scenario',
         error: Error('A error from a when function')
       })
     })

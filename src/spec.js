@@ -14,13 +14,6 @@ class Spec {
         //     return Err('Cannot run use case more than once. Try to instantiate a new object before run this use case.')
         // this._hasRun = true
 
-        // // audit trail
-        // this._auditTrail = this._mainStep._auditTrail
-        // this._auditTrail.type = this.type
-        // this._auditTrail.description = description
-        // this._auditTrail.request = null
-        // this._auditTrail.transactionId = crypto.randomUUID()
-
         this.build()
 
         // scenario
@@ -47,9 +40,9 @@ class Spec {
         }
         this.usecase = this._body.usecase
         const entries = Object.entries(this._body)
-        this.scenarios = entries
-            .filter(([k, v]) => v.isScenario)
-            .map(description)
+        const intialized = entries.map(([k, v]) => v.create ? v.create(k) : {})
+        this.scenarios = intialized
+            .filter(s => s.isScenario)
             .map(addUsecase)
 
         // run flag

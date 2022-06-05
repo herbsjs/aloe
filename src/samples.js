@@ -1,11 +1,10 @@
 const { exec } = require("./exec")
 const { state } = require("./runningState")
 
-class Given {
+class Samples {
   constructor(description, body) {
-    this.type = 'given'
+    this.type = 'samples'
     this.state = state.ready
-    this.context = {}
     this.description = description
     this._auditTrail = { type: this.type, state: this.state, description: this.description }
     this._body = body
@@ -14,12 +13,12 @@ class Given {
     }
   }
 
-  async run(context) {
+  async run() {
     let run = state.ready
     try {
-      const ret = this.func ? await this.func(context) : this._body
-      this.context = Object.assign(context, ret)
-      // this._auditTrail.context = {... this.context}
+      const ret = this.func ? await this.func() : this._body
+      if (!Array.isArray(ret)) throw new Error('Samples return must be a array')
+      this.value = ret
       run = state.done
     } catch (error) {
       run = state.failed
@@ -43,16 +42,18 @@ class Given {
   get auditTrail() {
     const audit = { ... this._auditTrail }
     if (this.error) audit.error = this.error
+    audit.description = this.description
     return audit
   }
 
-  get isGiven() {
+  get isSamples() {
     return true
   }
+
 }
 
-const given = (body) => ({
-  create: (description) => { return new Given(description, body) }
+const samples = (body) => ({
+  create: (description) => { return new Samples(description, body) }
 })
 
-module.exports = { given }
+module.exports = { samples }

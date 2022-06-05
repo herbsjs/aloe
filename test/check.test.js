@@ -6,7 +6,6 @@ describe('A check function', () => {
   context('before run', () => {
     const givenAPassingCheckFunction = () => {
       const instance = check(() => true)
-      instance.description = 'A "Check" description'
       return instance
     }
 
@@ -14,7 +13,8 @@ describe('A check function', () => {
 
     it('should document its structure', async () => {
       //given
-      const instance = givenAPassingCheckFunction()
+      const factory = givenAPassingCheckFunction()
+      const instance = factory.create('A "Check" description')
 
       //when
       const ret = await instance.doc()
@@ -34,7 +34,8 @@ describe('A check function', () => {
 
     it('should run', async () => {
       //given
-      const instance = givenAPassingCheckFunction()
+      const factory = givenAPassingCheckFunction()
+      const instance = factory.create('')
       //when
       const ret = await instance.run()
       //then
@@ -43,11 +44,12 @@ describe('A check function', () => {
 
     it('should audit after run', async () => {
       //given
-      const instance = givenAPassingCheckFunction()
+      const factory = givenAPassingCheckFunction()
+      const instance = factory.create('')
       //when
       const ret = await instance.run()
       //then
-      assert.deepStrictEqual(instance.auditTrail, { type: 'check', state: 'passed', description: undefined })
+      assert.deepStrictEqual(instance.auditTrail, { type: 'check', state: 'passed', description: '' })
     })
 
   })
@@ -61,7 +63,9 @@ describe('A check function', () => {
 
     it('should run', async () => {
       //given
-      const instance = givenAFailingCheckFunction()
+      const factory = givenAFailingCheckFunction()
+      const instance = factory.create('')
+
       //when
       const ret = await instance.run()
       //then
@@ -70,14 +74,16 @@ describe('A check function', () => {
 
     it('should audit after run', async () => {
       //given
-      const instance = givenAFailingCheckFunction()
+      const factory = givenAFailingCheckFunction()
+      const instance = factory.create('')
+
       //when
       const ret = await instance.run()
       //then
       assert.deepStrictEqual(instance.auditTrail, {
         type: 'check',
         state: 'failed',
-        description: undefined,
+        description: '',
         error: Error('A error from a check function')
       })
     })

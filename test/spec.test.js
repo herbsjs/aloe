@@ -49,6 +49,7 @@ describe('A spec', () => {
                 type: 'scenario',
                 description: 'A simple scenario',
                 info: 'A simple scenario',
+                samples: [],
                 givens: [{ type: 'given', description: 'Given a input', value: { id: 'a' }, isFunction: true }],
                 whens: [{ type: 'when', description: 'When running' }],
                 checks: [{ type: 'check', description: 'Check another output' }]
@@ -173,6 +174,7 @@ describe('A spec', () => {
                 type: 'scenario',
                 description: 'A simple scenario',
                 info: undefined,
+                samples: [],
                 givens: [{ type: 'given', description: 'Given a input', value: { id: 'a' }, isFunction: false }],
                 whens: [],
                 checks: [{ type: 'check', description: 'Check another output' }]

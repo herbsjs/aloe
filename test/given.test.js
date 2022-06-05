@@ -7,7 +7,6 @@ describe('A given value', () => {
       const instance = given({
         id: 1,
       })
-      instance.description = 'A "Given" description'
       return instance
     }
 
@@ -15,7 +14,8 @@ describe('A given value', () => {
 
     it('should document its structure', async () => {
       //given
-      const instance = givenAGenericGiven()
+      const factory = givenAGenericGiven()
+      const instance = factory.create('A "Given" description')
 
       //when
       const ret = await instance.doc()
@@ -41,10 +41,12 @@ describe('A given value', () => {
 
       it('should return its value', async () => {
         //given
-        const instance = givenAStructuredGivenForUseCases()
+        const factory = givenAStructuredGivenForUseCases()
+        const instance = factory.create('')
+        const context = {}
 
         //when
-        const ret = await instance.run()
+        const ret = await instance.run(context)
 
         //then
         assert.strictEqual(instance.context.description, 'Given a simple object')
@@ -55,13 +57,15 @@ describe('A given value', () => {
 
       it('should audit after run', async () => {
         //given
-        const instance = givenAStructuredGivenForUseCases()
+        const factory = givenAStructuredGivenForUseCases()
+        const instance = factory.create('')
+        const context = {}
 
         //when
-        const ret = await instance.run()
+        const ret = await instance.run(context)
 
         //then
-        assert.deepStrictEqual(instance.auditTrail, { type: 'given', state: 'done', description: undefined })
+        assert.deepStrictEqual(instance.auditTrail, { type: 'given', state: 'done', description: '' })
       })
     })
 
@@ -82,10 +86,12 @@ describe('A given value', () => {
 
       it('should return its value', async () => {
         //given
-        const instance = givenAnUnstructuredGiven()
+        const factory = givenAnUnstructuredGiven()
+        const instance = factory.create('')
+        const context = {}
 
         //when
-        const ret = await instance.run()
+        const ret = await instance.run(context)
 
         //then
         assert.strictEqual(
@@ -99,13 +105,15 @@ describe('A given value', () => {
 
       it('should audit after run', async () => {
         //given
-        const instance = givenAnUnstructuredGiven()
+        const factory = givenAnUnstructuredGiven()
+        const instance = factory.create('')
+        const context = {}
 
         //when
-        const ret = await instance.run()
+        const ret = await instance.run(context)
 
         //then
-        assert.deepStrictEqual(instance.auditTrail, { type: 'given', state: 'done', description: undefined })
+        assert.deepStrictEqual(instance.auditTrail, { type: 'given', state: 'done', description: '' })
       })
     })
 

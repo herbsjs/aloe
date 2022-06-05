@@ -1,12 +1,13 @@
 const { state } = require("./runningState")
 
 class When {
-  constructor(func) {
+  constructor(description, func) {
     this.type = 'when'
     this.func = func
     this.builtin = false
     this.state = state.ready
-    this._auditTrail = { type: this.type, state: this.state }
+    this.description = description
+    this._auditTrail = { type: this.type, state: this.state, description: this.description }
   }
 
   async run(context) {
@@ -33,9 +34,8 @@ class When {
   }
 
   get auditTrail() {
-    const audit = {... this._auditTrail}
+    const audit = { ... this._auditTrail }
     if (this.error) audit.error = this.error
-    audit.description = this.description
     return audit
   }
 
@@ -44,8 +44,8 @@ class When {
   }
 }
 
-const when = (body) => {
-  return new When(body)
-}
+const when = (body) => ({
+  create: (description) => { return new When(description, body) }
+})
 
 module.exports = { when }

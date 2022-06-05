@@ -2,7 +2,7 @@ const { Err } = require("@herbsjs/herbs")
 const { when } = require("../when")
 
 const builtinWhen = () => {
-  const instance =
+  const factory =
     when(async (ctx) => {
       const injection = ctx.injection
       const uc = ctx.usecase(injection)
@@ -18,6 +18,7 @@ const builtinWhen = () => {
       ctx.response = await uc.run(request)
     })
 
+  const instance = factory.create('')
   instance.builtin = true
   return instance
 }
