@@ -1,6 +1,5 @@
-<p align="center"><img src="https://raw.githubusercontent.com/herbsjs/aloe/master/docs/logo.png" height="220"></p>
-
-![Node.js CI](https://github.com/herbsjs/aloe/workflows/Node.js%20CI/badge.svg?branch=master) [![codecov](https://codecov.io/gh/herbsjs/aloe/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/aloe)
+[![CI](https://github.com/herbsjs/aloe/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/herbsjs/aloe/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/herbsjs/aloe/branch/main/graph/badge.svg)](https://codecov.io/gh/herbsjs/aloe)
 
 # Aloe
 
