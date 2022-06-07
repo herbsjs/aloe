@@ -3,7 +3,7 @@
 
 # Aloe
 
-Aloe helps ...
+Scenario description and test runner for Herbs
 
 ### Installing
 
