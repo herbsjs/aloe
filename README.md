@@ -1,4 +1,4 @@
-[![CI](https://github.com/herbsjs/aloe/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/herbsjs/aloe/actions/workflows/ci.yml)
+[![CD Build](https://github.com/herbsjs/aloe/actions/workflows/cd.yml/badge.svg)](https://github.com/herbsjs/aloe/actions/workflows/cd.yml)
 [![codecov](https://codecov.io/gh/herbsjs/aloe/branch/main/graph/badge.svg)](https://codecov.io/gh/herbsjs/aloe)
 
 # Aloe
