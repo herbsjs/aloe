@@ -1,5 +1,6 @@
 [![CD Build](https://github.com/herbsjs/aloe/actions/workflows/cd.yml/badge.svg)](https://github.com/herbsjs/aloe/actions/workflows/cd.yml)
 [![codecov](https://codecov.io/gh/herbsjs/aloe/branch/main/graph/badge.svg)](https://codecov.io/gh/herbsjs/aloe)
+[![stability-beta](https://img.shields.io/badge/stability-beta-33bbff.svg)](https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md#beta)
 
 # Aloe
 
