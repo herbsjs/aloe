@@ -27,7 +27,7 @@ const { xyz } = require('@herbsjs/aloe')
 - [ ] process exit code = 1 when error
 - [ ] TAP protocol https://testanything.org/
 
-- [ ] add aloe to `@herbsjs/herbs`
+- [X] add aloe to `@herbsjs/herbs`
 - [ ] CLI: doc `spec` command
 
 
