@@ -5,7 +5,7 @@ const { when } = require('../src/when')
 const { check } = require('../src/check')
 const { samples } = require('../src/samples')
 const { state } = require('../src/runningState')
-const { Err } = require('@herbsjs/herbs')
+const { Err } = require('@herbsjs/buchu')
 
 describe('A scenario', () => {
   context('before run', () => {

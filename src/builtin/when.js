@@ -1,4 +1,4 @@
-const { Err } = require("@herbsjs/herbs")
+const { Err } = require("@herbsjs/buchu")
 const { when } = require("../when")
 
 const builtinWhen = () => {

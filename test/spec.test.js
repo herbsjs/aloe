@@ -1,5 +1,5 @@
 const { spec } = require('../src/spec')
-const { usecase, step, Ok, Err } = require('@herbsjs/herbs')
+const { usecase, step, Ok, Err } = require('@herbsjs/buchu')
 
 const assert = require('assert')
 const { scenario } = require('../src/scenario')

@@ -34,7 +34,7 @@
   "license": "MIT",
   "homepage": "https://github.com/herbsjs/aloe#readme",
   "peerDependencies": {
-    "@herbsjs/herbs": "^1.4.5"
+    "@herbsjs/buchu": "1.5.1"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.1",
@@ -53,7 +53,7 @@
     "mocha": "^10.0.0",
     "nyc": "^15.1.0",
     "prettier": "^2.6.2",
-    "@herbsjs/herbs": "^1.4.5"
+    "@herbsjs/buchu": "1.5.1"
   },
   "repository": {
     "type": "git",
