@@ -1,10 +1,9 @@
-<p align="center"><img src="https://raw.githubusercontent.com/herbsjs/aloe/master/docs/logo.png" height="220"></p>
-
-![Node.js CI](https://github.com/herbsjs/aloe/workflows/Node.js%20CI/badge.svg?branch=master) [![codecov](https://codecov.io/gh/herbsjs/aloe/branch/master/graph/badge.svg)](https://codecov.io/gh/herbsjs/aloe)
+[![CD Build](https://github.com/herbsjs/aloe/actions/workflows/cd.yml/badge.svg)](https://github.com/herbsjs/aloe/actions/workflows/cd.yml)
+[![codecov](https://codecov.io/gh/herbsjs/aloe/branch/main/graph/badge.svg)](https://codecov.io/gh/herbsjs/aloe)
 
 # Aloe
 
-Aloe helps ...
+Scenario description and test runner for Herbs
 
 ### Installing
 
