@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/herbsjs/aloe/compare/v1.0.0...v1.0.1) (2022-06-13)
+
+
+### Bug Fixes
+
+* **herbs:** fix herbs dependency ([5f8af8c](https://github.com/herbsjs/aloe/commit/5f8af8cf4a2db8de84f334ec15a7f6a4d0fec2af))
+
 # 1.0.0 (2022-06-07)
 
 
