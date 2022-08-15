@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/herbsjs/aloe/compare/v1.0.1...v1.0.2) (2022-08-15)
+
+
+### Bug Fixes
+
+* **herbs:** update buchu dependencie ([b37aca3](https://github.com/herbsjs/aloe/commit/b37aca347adbdd0bdc00a438ae4965b213600daa))
+
 ## [1.0.1](https://github.com/herbsjs/aloe/compare/v1.0.0...v1.0.1) (2022-06-13)
 
 
