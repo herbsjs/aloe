@@ -24,6 +24,14 @@ const taskCountSpec = spec({
 })
 ```
 
+The spec function should be exported with [herbarium](https://github.com/herbsjs/herbarium):
+
+```javascript
+module.exports = herbarium.specs.add(taskCountSpec, "taskCountSpec").spec;
+```
+
+[herbs-cli](https://github.com/herbsjs/herbs-cli) also required to run Aloe with ```herbs spec```
+
 ## How to use
 
 ### Basic Spec
