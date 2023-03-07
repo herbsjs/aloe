@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/herbsjs/aloe/compare/v1.0.3...v2.0.0) (2023-03-07)
+
+
+### Continuous Integration
+
+* fix dependabot file ([a3038a1](https://github.com/herbsjs/aloe/commit/a3038a198000552caa3720650ed765aa2b9c9120))
+
+
+### BREAKING CHANGES
+
+* upgrade buchu to 2.0
+
 ## [1.0.3](https://github.com/herbsjs/aloe/compare/v1.0.2...v1.0.3) (2023-03-06)
 
 
