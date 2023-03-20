@@ -24,7 +24,9 @@ async function runner({ specs, herbarium, specsPath, dependencies = {} }) {
         italic: chalk.italic
     }
     const { grey, green, red, white, italic } = colors
+    /* eslint-disable no-console */
     const info = (msg => console.info(msg))
+    /* eslint-disable no-console */
     const success = (msg => console.info(chalk.bold.green(msg)))
     const failed = state.failed
     let errorCount = 0
@@ -38,7 +40,7 @@ async function runner({ specs, herbarium, specsPath, dependencies = {} }) {
         // mode: using Aloe directly
         else {
             // load all the specs from the path
-            const reqAll = dependencies.requireAll || requireAll;
+            const reqAll = dependencies.requireAll || requireAll
             specs = reqAll({ initialPath: specsPath })
         }
 

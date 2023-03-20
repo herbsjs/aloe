@@ -44,6 +44,7 @@ function prettyStack({ error, theme = themes.herbs }) {
         }
     }).join('\n')
 
+    /* eslint-disable no-console */
     console.info(`\n${formattedStackTrace}\n`)
 }
 
