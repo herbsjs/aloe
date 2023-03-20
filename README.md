@@ -175,6 +175,28 @@ const createUserSpec = spec({
 })
 ```
 
+### Runner
+
+The runner is responsible for executing the scenarios and showing the results.
+
+```javascript
+const { runner } = require('@herbsjs/aloe/runner')
+
+// running a set of pre-loaded specs
+await runner({ specs })
+
+// or
+
+// load specs from herbarium
+await runner({ herbarium })
+
+// or
+
+// load specs from the current directory (*.spec.js)
+await runner() // specsPath can be especified
+```
+
+
 ## TODO
 - [ ] doc on web site
 - [ ] CLI: doc `spec` command

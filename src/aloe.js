@@ -5,7 +5,6 @@ const { when } = require('./when')
 const { check } = require('./check')
 const { samples } = require('./samples')
 const { state } = require('./runningState')
-const { runner } = require('./runner/runner')
 
 module.exports = {
     spec,
@@ -15,5 +14,4 @@ module.exports = {
     check,
     samples,
     state,
-    runner,
 }
