@@ -1,6 +1,6 @@
 {
   "name": "@herbsjs/aloe",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Scenario description and test runner for Herbs",
   "main": "./src/aloe.js",
   "exports": {
