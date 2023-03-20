@@ -1,3 +1,16 @@
+# [2.1.0](https://github.com/herbsjs/aloe/compare/v2.0.0...v2.1.0) (2023-03-20)
+
+
+### Bug Fixes
+
+* **ci:** change node version to 18.x ([fcfd364](https://github.com/herbsjs/aloe/commit/fcfd36407f519466c85041fc4919d5d8700a7f77))
+* **runner:** lint for console ([a213ff2](https://github.com/herbsjs/aloe/commit/a213ff2d7c982425a41b112ed41d5476ecd786c6))
+
+
+### Features
+
+* **runner:** test runner now lives on Aloe ([af10a38](https://github.com/herbsjs/aloe/commit/af10a38cf1ac51b68f79b3e5d8fb70032c978451))
+
 # [2.0.0](https://github.com/herbsjs/aloe/compare/v1.0.3...v2.0.0) (2023-03-07)
 
 
