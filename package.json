@@ -3,6 +3,9 @@
   "version": "2.0.0",
   "description": "Scenario description and test runner for Herbs",
   "main": "./src/aloe.js",
+  "exports": {
+    "./runner": "./src/runner/runner"
+  },
   "scripts": {
     "test": "mocha --timeout 999999 --colors --recursive ./test",
     "lint": "npx eslint \"**/*.{js,jsx}\" --quiet",
