@@ -31,7 +31,8 @@
     "DDD",
     "clean architecture",
     "test",
-    "integration test"
+    "integration test",
+    "unit test"
   ],
   "author": "David Lojudice Sb",
   "license": "MIT",
