@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/herbsjs/aloe/compare/v2.1.0...v2.2.0) (2023-03-20)
+
+
+### Features
+
+* **runner:** runner dependencies not conflicting with the rest of the lib ([735611d](https://github.com/herbsjs/aloe/commit/735611d6cd99259fb5d821de3e645e2d148fc004))
+
 # [2.1.0](https://github.com/herbsjs/aloe/compare/v2.0.0...v2.1.0) (2023-03-20)
 
 
