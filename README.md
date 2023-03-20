@@ -175,7 +175,6 @@ const createUserSpec = spec({
 })
 ```
 
-
 ## TODO
 - [ ] doc on web site
 - [ ] CLI: doc `spec` command
@@ -183,9 +182,8 @@ const createUserSpec = spec({
 - [ ] only
 - [ ] todo / pending
 - [ ] nested scenarios
-- [ ] process exit code = 1 when error
+- [ ] tests for runner
 - [ ] TAP protocol https://testanything.org/
-
 
 ### Contribute
 
