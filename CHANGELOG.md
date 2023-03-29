@@ -1,3 +1,10 @@
+## [2.2.2-beta.2](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.1...v2.2.2-beta.2) (2023-03-29)
+
+
+### Bug Fixes
+
+* **depencency:** buchu version ([751ff23](https://github.com/herbsjs/aloe/commit/751ff235e81a7742af6595afd5c67dd22a5bc9ce))
+
 ## [2.2.2-beta.1](https://github.com/herbsjs/aloe/compare/v2.2.1...v2.2.2-beta.1) (2023-03-29)
 
 
