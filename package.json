@@ -4,6 +4,7 @@
   "description": "Scenario description and test runner for Herbs",
   "main": "./src/aloe.js",
   "exports": {
+    ".": "./src/aloe.js",
     "./runner": "./src/runner/runner.js"
   },
   "scripts": {
