@@ -174,7 +174,7 @@ const createUserSpec = spec({
     }),
 })
 ```
-
+ 
 ### Runner
 
 The runner is responsible for executing the scenarios and showing the results.
