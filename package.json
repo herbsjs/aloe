@@ -38,7 +38,7 @@
   "license": "MIT",
   "homepage": "https://github.com/herbsjs/aloe#readme",
   "peerDependencies": {
-    "@herbsjs/buchu": "2.1.0"
+    "@herbsjs/buchu": "^2.1.1-beta.1"
   },
   "peerDependenciesMeta": {
     "@herbsjs/buchu": {
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
-    "@herbsjs/buchu": "^1.6.2",
+    "@herbsjs/buchu": "^2.1.1-beta.1",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/git": "^10.0.1",
