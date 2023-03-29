@@ -1,3 +1,10 @@
+## [2.2.2-beta.1](https://github.com/herbsjs/aloe/compare/v2.2.1...v2.2.2-beta.1) (2023-03-29)
+
+
+### Bug Fixes
+
+* **touch:** ping ([4b55fe9](https://github.com/herbsjs/aloe/commit/4b55fe9929b978a647ac89ba498fa3ff428e6208))
+
 ## [2.2.1](https://github.com/herbsjs/aloe/compare/v2.2.0...v2.2.1) (2023-03-20)
 
 
