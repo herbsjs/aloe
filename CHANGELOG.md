@@ -1,3 +1,10 @@
+## [2.2.2-beta.3](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.2...v2.2.2-beta.3) (2023-03-29)
+
+
+### Bug Fixes
+
+* **package.json:** fix export main ([08e01ed](https://github.com/herbsjs/aloe/commit/08e01edc5575d74a6ee1499a594ed156d93c8bcb))
+
 ## [2.2.2-beta.2](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.1...v2.2.2-beta.2) (2023-03-29)
 
 
