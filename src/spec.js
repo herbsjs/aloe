@@ -5,16 +5,19 @@ class Spec {
     constructor(body) {
         this.type = 'spec'
         this.state = state.ready
+        this.ignore = false
         this._auditTrail = { type: this.type, state: this.state }
         this._body = body
     }
 
     async run() {
-        // if (this._hasRun)
-        //     return Err('Cannot run use case more than once. Try to instantiate a new object before run this use case.')
-        // this._hasRun = true
 
         this.build()
+
+        if(this.ignore) {
+            this.state = state.ignored
+            return this.state
+        }
 
         // scenario
         for (const scenario of this.scenarios) {
@@ -29,11 +32,7 @@ class Spec {
     }
 
     build() {
-        const description = (entry) => {
-            const [description, scenario] = entry
-            scenario.description = description
-            return scenario
-        }
+        if (this._hasBuild) return
         const addUsecase = (scenario) => {
             if (this.usecase) scenario.usecase = this.usecase
             return scenario
@@ -41,12 +40,16 @@ class Spec {
         this.usecase = this._body.usecase
         const entries = Object.entries(this._body)
         const intialized = entries.map(([k, v]) => v.create ? v.create(k) : {})
+        this.only = intialized.find((scenario) => scenario.only)
+        if (this.only) intialized.forEach((scenario) => {
+            if (!scenario.only) scenario.ignore = true
+        })
+
         this.scenarios = intialized
             .filter(s => s.isScenario)
             .map(addUsecase)
 
-        // run flag
-        // this._hasRun = false
+        this._hasBuild = true
     }
 
     doc() {
@@ -58,10 +61,6 @@ class Spec {
         if (this.usecase) doc.usecase = this.usecase().doc()
         return doc
     }
-
-    // get auditTrail() {
-    //     return this._mainStep.auditTrail
-    // }
 
     get isSpec() {
         return true

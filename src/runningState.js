@@ -3,4 +3,5 @@ module.exports.state = Object.freeze({
   done: 'done',
   passed: 'passed',
   failed: 'failed',
+  ignored: 'ignored',
 })

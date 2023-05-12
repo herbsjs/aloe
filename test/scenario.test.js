@@ -103,7 +103,7 @@ describe('A scenario', () => {
 
       //then
       // - firts, it should not throw a exception, then:
-      assert.ok(ret, state.passed)
+      assert.equal(ret, state.passed)
       assert.strictEqual(instance.description, 'A scenario')
       assert.strictEqual(instance.info, 'A simple scenario')
       assert.strictEqual(instance.samples[0].description, '')
@@ -186,7 +186,7 @@ describe('A scenario', () => {
       //then
       // - firts, it should not throw a exception, then:
 
-      assert.ok(ret, state.failed)
+      assert.equal(ret, state.failed)
       assert.strictEqual(instance.description, 'A failed scenario')
       assert.strictEqual(instance.info, 'A simple scenario')
       assert.strictEqual(instance.samples[0].description, '')
@@ -379,7 +379,7 @@ describe('A scenario', () => {
 
       //then
       // - firts, it should not throw a exception, then:
-      assert.ok(ret, state.passed)
+      assert.equal(ret, state.passed)
       assert.strictEqual(instance.samples.length, 2)
       assert.strictEqual(instance.samples[0].state, state.done)
       for (const s of [0, 1]) {
@@ -394,5 +394,62 @@ describe('A scenario', () => {
       }
     })
 
+  })
+
+  context('with only', () => {
+
+    const givenTheScenarioWithOnly = () => {
+      return scenario.only({
+        'Given a input': given(() => { }),
+        'When running': when(() => { }),
+        'Check output': check(() => { }),
+      })
+    }
+
+    it('should run', async () => {
+      //given
+      const factory = givenTheScenarioWithOnly()
+      const instance = factory.create('A scenario')
+
+      //when
+      const ret = await instance.run()
+
+      //then
+      // - firts, it should not throw a exception, then:
+      assert.equal(ret, state.passed)
+      assert.strictEqual(instance.description, 'A scenario')
+      assert.strictEqual(instance.samples[0].description, '')
+      assert.strictEqual(instance.samples[0].builtin, true)
+      assert.strictEqual(instance.samples[0].execution.scenarios[0].stage, 'check')
+    })
+  })
+
+  context('with ignore flag', () => {
+      
+      const givenTheScenarioWithIgnore = () => {
+        return scenario({
+          'Given a input': given(() => { }),
+          'When running': when(() => { }),
+          'Check output': check(() => { }),
+        })
+      }
+  
+      it('should run', async () => {
+        //given
+        const factory = givenTheScenarioWithIgnore()
+        const instance = factory.create('A scenario')
+        instance.ignore = true
+  
+        //when
+        const ret = await instance.run()
+  
+        //then
+        // - firts, it should not throw a exception, then:
+        assert.equal(ret, state.ignored)
+        assert.strictEqual(instance.description, 'A scenario')
+        assert.strictEqual(instance.samples[0].description, '')
+        assert.strictEqual(instance.samples[0].builtin, true)
+        assert.strictEqual(instance.samples[0].state, state.ready)
+      })
   })
 })
