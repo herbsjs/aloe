@@ -1,3 +1,10 @@
+# [2.3.0-beta.1](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.3...v2.3.0-beta.1) (2023-05-12)
+
+
+### Features
+
+* **scenario:** only - run only scenarios marked as .only ([8ce67a0](https://github.com/herbsjs/aloe/commit/8ce67a023220cfe8679c43a7885d97072499cb46)), closes [#7](https://github.com/herbsjs/aloe/issues/7)
+
 ## [2.2.2-beta.3](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.2...v2.2.2-beta.3) (2023-03-29)
 
 
