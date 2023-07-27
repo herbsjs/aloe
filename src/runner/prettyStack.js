@@ -13,7 +13,8 @@ const themes = {
 function prettyStack({ error, theme = themes.herbs }) {
 
     if (!(error instanceof Error)) {
-        console.log(`\n       `, chalk.ansi256(theme['main'])('Error:'), chalk.ansi256(theme['message'])(chalk.bgAnsi256(theme['backgroundMessage'])(error)), `\n`)
+        /* eslint-disable no-console */
+        console.info(`\n       `, chalk.ansi256(theme['main'])('Error:'), chalk.ansi256(theme['message'])(chalk.bgAnsi256(theme['backgroundMessage'])(error)), `\n`)
         return
     }
 
