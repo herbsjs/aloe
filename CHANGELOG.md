@@ -1,3 +1,11 @@
+# [2.3.0-beta.2](https://github.com/herbsjs/aloe/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2023-07-27)
+
+
+### Bug Fixes
+
+* **lint:** fix lint error ([6fc20d0](https://github.com/herbsjs/aloe/commit/6fc20d059e71c50aec81a545f47ee506d5a6d6f3))
+* **prettystack:** fix prettyStack when error is not a Error instance ([d73ff5f](https://github.com/herbsjs/aloe/commit/d73ff5fb1dc434e770546bc6b7bf849425fce52d))
+
 # [2.3.0-beta.1](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.3...v2.3.0-beta.1) (2023-05-12)
 
 
