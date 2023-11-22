@@ -49,7 +49,9 @@ const taskCountSpec = spec({
 })
 ```
 
-It is possible to have many `given` and `check` on the same scenario.
+It is possible to have many `given` and `check` on the same scenario. 
+
+
 
 ```javascript
 const billingSpec = spec({
@@ -59,6 +61,17 @@ const billingSpec = spec({
         'When calculate the bill': when((ctx) => ...),
         'Must have a valid bill': check((ctx) => ...),
         'Must have a discount': check((ctx) => ...),
+    }),
+})
+```
+It's also possible to run `only` a specific scenario.
+
+```javascript
+const taskCountSpec = spec({
+    'Change count for the task': scenario.only({
+        'Given a valid task': given({ task: 'do it', count: 0 }),
+        'When increase count': when((ctx) => (ctx.count++)),
+        'Must have a increased count': check((ctx) => { assert.ok(ctx.count === 1) }),
     }),
 })
 ```
@@ -201,7 +214,7 @@ await runner() // specsPath can be especified
 - [ ] doc on web site
 - [ ] CLI: doc `spec` command
 - [ ] skip
-- [ ] only
+- [X] only
 - [ ] todo / pending
 - [ ] nested scenarios
 - [ ] tests for runner
