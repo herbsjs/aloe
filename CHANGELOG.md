@@ -1,3 +1,39 @@
+# [2.3.0-beta.2](https://github.com/herbsjs/aloe/compare/v2.3.0-beta.1...v2.3.0-beta.2) (2023-07-27)
+
+
+### Bug Fixes
+
+* **lint:** fix lint error ([6fc20d0](https://github.com/herbsjs/aloe/commit/6fc20d059e71c50aec81a545f47ee506d5a6d6f3))
+* **prettystack:** fix prettyStack when error is not a Error instance ([d73ff5f](https://github.com/herbsjs/aloe/commit/d73ff5fb1dc434e770546bc6b7bf849425fce52d))
+
+# [2.3.0-beta.1](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.3...v2.3.0-beta.1) (2023-05-12)
+
+
+### Features
+
+* **scenario:** only - run only scenarios marked as .only ([8ce67a0](https://github.com/herbsjs/aloe/commit/8ce67a023220cfe8679c43a7885d97072499cb46)), closes [#7](https://github.com/herbsjs/aloe/issues/7)
+
+## [2.2.2-beta.3](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.2...v2.2.2-beta.3) (2023-03-29)
+
+
+### Bug Fixes
+
+* **package.json:** fix export main ([08e01ed](https://github.com/herbsjs/aloe/commit/08e01edc5575d74a6ee1499a594ed156d93c8bcb))
+
+## [2.2.2-beta.2](https://github.com/herbsjs/aloe/compare/v2.2.2-beta.1...v2.2.2-beta.2) (2023-03-29)
+
+
+### Bug Fixes
+
+* **depencency:** buchu version ([751ff23](https://github.com/herbsjs/aloe/commit/751ff235e81a7742af6595afd5c67dd22a5bc9ce))
+
+## [2.2.2-beta.1](https://github.com/herbsjs/aloe/compare/v2.2.1...v2.2.2-beta.1) (2023-03-29)
+
+
+### Bug Fixes
+
+* **touch:** ping ([4b55fe9](https://github.com/herbsjs/aloe/commit/4b55fe9929b978a647ac89ba498fa3ff428e6208))
+
 ## [2.2.1](https://github.com/herbsjs/aloe/compare/v2.2.0...v2.2.1) (2023-03-20)
 
 

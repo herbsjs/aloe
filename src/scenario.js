@@ -114,12 +114,14 @@ class SamplesExecution {
 
 
 class Scenario {
-  constructor(description, body) {
+  constructor(description, body, options = {}) {
     this.type = 'scenario'
     this.state = state.ready
     this.description = description
+    this.ignore = false
     this._auditTrail = { type: this.type, state: this.state, description: this.description }
     this._body = body
+    this.only = options.only
   }
 
   async run() {
@@ -137,6 +139,12 @@ class Scenario {
     const intialized = entries.map(([k, v]) => v.create ? v.create(k) : {})
     this.samples = intialized.filter(s => s.isSamples)
     addBuiltinSample()
+
+    if(this.ignore) {
+      this.state = state.ignored
+      this._auditTrail.state = this.state
+      return this.state
+    }
 
     for (const samples of this.samples) {
       const execution = new SamplesExecution(this, samples)
@@ -186,8 +194,11 @@ class Scenario {
   }
 }
 
-const scenario = (body) => ({
-  create: (description) => { return new Scenario(description, body) }
+const scenario = (body, options) => ({
+  create: (description) => { return new Scenario(description, body, options) }
 })
+
+scenario.only = (body, options) => scenario(body, Object.assign({}, options, { only: true }))
+
 
 module.exports = { scenario }

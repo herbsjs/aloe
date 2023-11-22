@@ -294,4 +294,88 @@ describe('A spec', () => {
   })
 
   it('for an entity')
+
+  context('with scenarios with only', async () => {
+    const givenTheGenericSpecWithOnly = () => {
+      const ASpec = spec({
+        'Scenario 1': scenario({
+          info: 'A simple scenario',
+          'Given a input': given(() => ({
+            id: 'a',
+          })),
+          'When running': when((ctx) => {
+            ctx.id = 'b'
+          }),
+          'Check another output': check((ctx) => {
+            assert.ok(ctx.id === 'b')
+          }),
+        }),
+        'Scenario 2': scenario.only({
+          info: 'A simple scenario',
+          'Given a input': given(() => ({
+            id: 'a',
+          })),
+          'When running': when((ctx) => {
+            ctx.id = 'b'
+          }),
+          'Check another output': check((ctx) => {
+            assert.ok(ctx.id === 'b')
+          }),
+        }),
+      })
+
+      return ASpec
+    }
+
+    it('should run', async () => {
+      //given
+      const instance = givenTheGenericSpecWithOnly()
+      //when
+      const ret = await instance.run()
+      //then
+      // - firts, it should not throw a exception, then:
+      assert.strictEqual(ret, state.passed)
+      assert.strictEqual(instance.scenarios[0].state, state.ignored)
+      assert.strictEqual(instance.scenarios[1].state, state.passed)
+    })
+
+    it('should audit after run')
+
+  })
+
+  context('with ignore flag', () => {
+    const givenTheGenericSpecWithIgnore = () => {
+      const ASpec = spec({
+        'Scenario 1': scenario({
+          info: 'A simple scenario',
+          ignore: true,
+          'Given a input': given(() => ({
+            id: 'a',
+          })),
+          'When running': when((ctx) => {
+            ctx.id = 'b'
+          }),
+          'Check another output': check((ctx) => {
+            assert.ok(ctx.id === 'b')
+          }),
+        }),
+      })
+
+      return ASpec
+    }
+
+    it('should run', async () => {
+      //given
+      const instance = givenTheGenericSpecWithIgnore()
+      instance.ignore = true
+      //when
+      const ret = await instance.run()
+      //then
+      // - firts, it should not throw a exception, then:
+      assert.strictEqual(ret, state.ignored)
+      assert.strictEqual(instance.scenarios[0].state, state.ready)
+    })
+
+    it('should audit after run')
+  })
 })

@@ -1,9 +1,10 @@
 {
   "name": "@herbsjs/aloe",
-  "version": "2.2.1",
+  "version": "2.3.0-beta.2",
   "description": "Scenario description and test runner for Herbs",
   "main": "./src/aloe.js",
   "exports": {
+    ".": "./src/aloe.js",
     "./runner": "./src/runner/runner.js"
   },
   "scripts": {
@@ -38,7 +39,7 @@
   "license": "MIT",
   "homepage": "https://github.com/herbsjs/aloe#readme",
   "peerDependencies": {
-    "@herbsjs/buchu": "2.1.0"
+    "@herbsjs/buchu": "^2.1.1"
   },
   "peerDependenciesMeta": {
     "@herbsjs/buchu": {
@@ -47,7 +48,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.2",
-    "@herbsjs/buchu": "^1.6.2",
+    "@herbsjs/buchu": "^2.1.1",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/commit-analyzer": "^9.0.2",
     "@semantic-release/git": "^10.0.1",

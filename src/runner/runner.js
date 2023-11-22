@@ -63,9 +63,9 @@ async function runner({ specs, herbarium, specsPath, dependencies = {} }) {
         return orderedGroup
     }
 
-
     async function showScenarios(spec, previousGroup, groupName, errorCount, successCount) {
         const ret = await spec.run()
+        if (ret === state.ignored) return { previousGroup, errorCount, successCount }
         const color = ret !== failed ? white : red
         if (previousGroup !== groupName) {
             if (groupName === undefinedGroup)
@@ -78,6 +78,8 @@ async function runner({ specs, herbarium, specsPath, dependencies = {} }) {
         const result = (ret) => ret !== failed ? green('●') : red('○')
 
         for (const scenario of spec.scenarios) {
+
+            if (scenario.state === state.ignored) continue
 
             function countSamples(scenario) {
                 let count = 0
@@ -146,6 +148,21 @@ async function runner({ specs, herbarium, specsPath, dependencies = {} }) {
         }
         return { errorCount, successCount }
     }
+
+    function prepareForOnly() {
+        // build all the specs
+        specs.forEach(meta => meta.spec.build())
+
+        // if there is one or more specs with only, mark all the others as ignored 
+        const hasOnly = Array.from(specs).some(([_, meta]) => meta.spec.only)
+        if (hasOnly) {
+            specs.forEach(meta => {
+                if (!meta.spec.only) meta.spec.ignore = true
+            })
+        }
+    }
+
+    prepareForOnly()
 
     const usecasesGroup = groupSteps(specs)
 
